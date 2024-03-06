@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: nfs-subdir-external-provisioner
+  name: nfs-critical
+  namespace: nfs
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nfs-subdir-external-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-subdir-external-provisioner
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: nfs-config-critical-bbm57g7f2d
+        image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+        imagePullPolicy: IfNotPresent
+        name: nfs-subdir-external-provisioner
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /persistentvolumes
+          name: nfs-subdir-external-provisioner-root
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccount: nfs-subdir-external-provisioner-critical
+      serviceAccountName: nfs-subdir-external-provisioner-critical
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: nfs-subdir-external-provisioner-root
+        nfs:
+          path: /volume1/critical/k3s
+          server: 192.168.1.21
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: nfs-subdir-external-provisioner
+  name: nfs-k3s
+  namespace: nfs
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nfs-subdir-external-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-subdir-external-provisioner
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: nfs-config-k3s-cbcc64bk5f
+        image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+        imagePullPolicy: IfNotPresent
+        name: nfs-subdir-external-provisioner
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /persistentvolumes
+          name: nfs-subdir-external-provisioner-root
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccount: nfs-subdir-external-provisioner-k3s
+      serviceAccountName: nfs-subdir-external-provisioner-k3s
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: nfs-subdir-external-provisioner-root
+        nfs:
+          path: /volume1/k3s
+          server: 192.168.1.21

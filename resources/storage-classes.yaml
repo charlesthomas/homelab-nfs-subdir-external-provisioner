@@ -1,0 +1,26 @@
+---
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    labels:
+      app: nfs-subdir-external-provisioner
+    name: nfs-critical
+  parameters:
+    archiveOnDelete: "true"
+  allowVolumeExpansion: true
+  provisioner: nfs-critical
+  reclaimPolicy: Retain
+  volumeBindingMode: Immediate
+---
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    labels:
+      app: nfs-subdir-external-provisioner
+    name: nfs-k3s
+  allowVolumeExpansion: true
+  parameters:
+    archiveOnDelete: "true"
+  provisioner: nfs-k3s
+  reclaimPolicy: Retain
+  volumeBindingMode: Immediate
