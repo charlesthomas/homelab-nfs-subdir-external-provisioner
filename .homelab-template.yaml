@@ -1,0 +1,20 @@
+_commit: v1.6.12-12-geae035c
+_src_path: /home/crthomas/code/charlesthomas/homelab-template
+additionalResources: storage-classes.yaml
+backups: false
+helm: false
+ingress: false
+labels: 'app: nfs-subdir-external-provisioner'
+name: nfs
+namespace: nfs
+pvc: false
+reloader: true
+resources:
+- configmaps.yaml
+- deployments.yaml
+- rbac.yaml
+- service-accounts.yaml
+service: false
+serviceAccount: false
+upstreamURL: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
+url: https://github.com/charlesthomas/homelab-nfs-subdir-external-provisioner

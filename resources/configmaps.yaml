@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+  name: nfs-config-critical
+  namespace: nfs
+data:
+  NFS_PATH: /volume1/critical/k3s
+  NFS_SERVER: 192.168.1.21
+  PROVISIONER_NAME: nfs-critical
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+  name: nfs-config-k3s
+  namespace: nfs
+data:
+  NFS_PATH: /volume1/k3s
+  NFS_SERVER: 192.168.1.21
+  PROVISIONER_NAME: nfs-k3s
