@@ -1,8 +1,11 @@
-_commit: v1.6.12-12-geae035c
+_commit: v1.8.1
 _src_path: /home/crthomas/code/charlesthomas/homelab-template
 additionalResources: storage-classes.yaml
 backups: false
 helm: false
+homepageEnabled: true
+ingHost: nfs.crt.house
+ingName: nfs
 ingress: false
 labels: 'app: nfs-subdir-external-provisioner'
 name: nfs

@@ -19,6 +19,7 @@ patches:
         reloader.stakater.com/auto: "true"
   target:
     kind: Deployment
+<<<<<<< before updating
 
 resources:
 - resources/configmaps.yaml
@@ -27,3 +28,21 @@ resources:
 - resources/rbac.yaml
 - resources/service-accounts.yaml
 - resources/storage-classes.yaml
+=======
+- patch: |-
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: nfs
+      namespace: nfs
+      annotations:
+        gethomepage.dev/href: https://nfs.crt.house
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: 
+        gethomepage.dev/group: 
+        gethomepage.dev/icon: nfs
+        gethomepage.dev/name: nfs
+        gethomepage.dev/pod-selector: ""
+  target:
+    kind: Ingress
+>>>>>>> after updating
