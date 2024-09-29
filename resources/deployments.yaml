@@ -28,6 +28,7 @@ spec:
         image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
         imagePullPolicy: IfNotPresent
         name: nfs-subdir-external-provisioner
+        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -74,6 +75,7 @@ spec:
         image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
         imagePullPolicy: IfNotPresent
         name: nfs-subdir-external-provisioner
+        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
